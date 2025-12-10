@@ -1,0 +1,134 @@
+/* src/components/liquidglass.css */
+
+/* basic resets */
+:root {
+    --content-width: 720px;
+    --size: 45px;
+}
+
+/* demo layout */
+body, html, #root {
+    height: 100%;
+}
+.demo-header {
+    width: var(--content-width);
+    margin: 2rem auto 0;
+}
+.demo-header h1 { margin:0; font-size: 2.4rem; line-height:0.9; }
+.demo-header p { margin: 0.5rem 0 0; color: rgba(0,0,0,0.65); }
+
+/* the glass "effect" element */
+.effect {
+    opacity: 0;
+    transition: opacity .26s ease-out;
+    height: calc(var(--height) * 1px);
+    width: calc(var(--width) * 1px);
+    border-radius: calc(var(--radius) * 1px);
+    position: fixed;
+    z-index: 999999;
+    background: rgba(255,255,255, var(--frost, 0.05));
+    backdrop-filter: blur(8px) saturate(var(--saturation, 1));
+    -webkit-backdrop-filter: blur(8px) saturate(var(--saturation, 1));
+    box-shadow:
+            0 0 2px 1px rgba(0,0,0,0.02) inset,
+            0 0 10px 4px rgba(0,0,0,0.02) inset,
+            0px 4px 16px rgba(17,17,26,0.05);
+    pointer-events: none;
+    transform: translateZ(0);
+}
+
+/* nav inside effect */
+.effect nav {
+    width: 100%;
+    height: 100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 0.4rem;
+    opacity: 1;
+    pointer-events: none;
+}
+.effect nav img {
+    width: 60px;
+    aspect-ratio: 1;
+    margin: 0 .25rem;
+}
+
+/* make effect clickable area inert but children clickable by toggling pointer-events on inner elements */
+.effect * { pointer-events: none; }
+
+/* displacement-debug panel (hidden by default) */
+.displacement-debug {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    translate: 0 200%;
+    opacity: 0;
+    transition: translate .26s ease-out, opacity .26s ease-out;
+    z-index: -1;
+}
+[data-debug="true"] .displacement-debug {
+    translate: 0 calc(100% + 1rem);
+    scale: 1;
+    opacity: 1;
+    z-index: 10;
+}
+.displacement-debug .displacement-image {
+    width: 100%;
+    height: 100%;
+    border-radius: calc(var(--radius) * 1px);
+    pointer-events:none;
+}
+.displacement-debug .label {
+    position:absolute;
+    left:50%;
+    top: calc(100% + 0.2rem);
+    transform: translateX(-50%);
+}
+.displacement-debug .label span {
+    display:inline-block;
+    padding: .4rem .6rem;
+    background: rgba(255,255,255,0.06);
+    border-radius: 6px;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+/* placeholder */
+.placeholder {
+    width: 336px;
+    height: 96px;
+    position: relative;
+    margin: 2rem auto 8rem;
+}
+.dock-placeholder {
+    width: 336px;
+    height: 96px;
+    border-radius: 16px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.05);
+}
+
+/* apps grid & images */
+.apps {
+    display:grid;
+    grid-template-columns: repeat(4, 80px);
+    gap: 1rem;
+    width: fit-content;
+    margin: 1rem 0;
+}
+.app { text-align:center; font-size: .9rem; }
+.app img { width: 100%; border-radius: 12px; }
+
+/* other sections */
+main { width: var(--content-width); max-width: calc(100vw - 2rem); margin: 0 auto 4rem; }
+.images img { width: 300px; border-radius: 12px; }
+
+/* small utilities */
+.arrow { position: absolute; left: 30%; top: 140px; transform: translate(-100%,0); font-family: 'Gloria Hallelujah', cursive; }
+.arrow svg { width: 80px; transform: rotate(-25deg); }
+
+/* make the demo more visible initially */
+.effect { opacity: 1; }

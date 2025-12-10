@@ -1,0 +1,423 @@
+/* Simple Glassmorphism Style */
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    background: #1a1a2e;
+}
+
+/* Background image layer */
+.background-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Dark overlay for better contrast */
+.auth-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* Glass card styles */
+.login-form,
+.register-form,
+.verification-form {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 400px;
+    padding: 40px 32px;
+    border-radius: 20px;
+
+    /* Glassmorphism effect */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+
+    /* Borders and shadows */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+            0 8px 32px 0 rgba(0, 0, 0, 0.37),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Hover effect for the card */
+.login-form:hover,
+.register-form:hover,
+.verification-form:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Header styles */
+.login-form h1,
+.register-form h1,
+.verification-form h1 {
+    margin-bottom: 8px;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.login-form > p,
+.register-form > p {
+    margin-bottom: 28px;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.5;
+}
+
+/* Verification form specific styles */
+.verification-form {
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateX(-2px);
+}
+
+.verification-description {
+    margin-bottom: 4px;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.5;
+}
+
+.verification-email {
+    margin-bottom: 8px;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.change-email-btn {
+    display: block;
+    margin: 0 auto 24px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    text-decoration: underline;
+    transition: all 0.3s ease;
+    padding: 4px 8px;
+}
+
+.change-email-btn:hover {
+    color: #ffffff;
+}
+
+/* Form styles */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form label {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Password input wrapper */
+.password-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.password-toggle:hover {
+    color: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Input styles */
+.form input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    /* Glass effect for inputs */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    color: #ffffff;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow:
+            0 2px 8px rgba(0, 0, 0, 0.15),
+            inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Password input with icon */
+.password-input-wrapper input {
+    padding-right: 44px;
+}
+
+.form input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form input:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow:
+            0 4px 20px rgba(255, 255, 255, 0.15),
+            0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.form input:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Button styles */
+.btn-submit {
+    margin-top: 8px;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 12px;
+
+    /* Glass button effect */
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+
+    box-shadow:
+            0 4px 15px rgba(255, 255, 255, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-submit:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-2px);
+    box-shadow:
+            0 6px 20px rgba(255, 255, 255, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+    box-shadow:
+            0 2px 8px rgba(255, 255, 255, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Switch section */
+.switch-section {
+    margin-top: 24px;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.switch-section p {
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 10px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.switch-section a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.switch-section a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .login-form,
+    .register-form {
+        padding: 32px 24px;
+        max-width: 100%;
+        border-radius: 18px;
+    }
+
+    .form input {
+        padding: 11px 14px;
+    }
+
+    .btn-submit {
+        padding: 13px 28px;
+    }
+}
+
+/* OTP Input Container */
+.otp-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+/* OTP Input Styling */
+.otp-input {
+    width: 56px;
+    height: 64px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #ffffff;
+    font-size: 28px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow:
+            0 4px 12px rgba(0, 0, 0, 0.15),
+            inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    outline: none;
+}
+
+.otp-input:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.otp-input:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow:
+            0 6px 20px rgba(255, 255, 255, 0.2),
+            0 0 0 4px rgba(255, 255, 255, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* Disabled state for submit button */
+.btn-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-submit:disabled:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Verify button centering */
+.btn-verify {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* Resend Text */
+.resend-text {
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    margin-top: 20px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.resend-link {
+    color: #ffffff;
+    text-decoration: underline;
+    transition: all 0.3s ease;
+    margin-left: 4px;
+}
+
+.resend-link:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Mobile responsiveness for verification form */
+@media (max-width: 480px) {
+    .verification-form {
+        padding: 32px 24px;
+        max-width: 100%;
+        border-radius: 18px;
+    }
+
+    .otp-input {
+        width: 44px;
+        height: 52px;
+        font-size: 22px;
+    }
+
+    .otp-container {
+        gap: 6px;
+        margin-bottom: 24px;
+    }
+}
